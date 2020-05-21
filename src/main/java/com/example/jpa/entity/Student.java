@@ -2,6 +2,7 @@ package com.example.jpa.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,7 +16,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "passport")
 public class Student {
 
 	@Id
@@ -27,7 +28,7 @@ public class Student {
 	 * and then the student.
 	 * You can do all in one step, omitting the passport save
 	 * */
-	@OneToOne(cascade = CascadeType.ALL)// 
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// 
 	//@OneToOne
 	@JoinColumn(name="ID_PASSAPORTO")
 	private Passport passport;

@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.jpa.entity.Course;
-import com.example.jpa.entity.Student;
 import com.example.jpa.repository.CourseRepository;
-import com.example.jpa.repository.StudentRepository;
-import com.example.jpa.utils.StudentUtils;
+import com.example.jpa.service.StartOperationService;
 
 @SpringBootApplication
 public class DemoJpaApplication implements CommandLineRunner{
@@ -19,6 +18,9 @@ public class DemoJpaApplication implements CommandLineRunner{
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private CourseRepository repository;
+	
+	@Autowired
+	private StartOperationService opService;
 	
 	
 	public static void main(String[] args) {
@@ -31,9 +33,8 @@ public class DemoJpaApplication implements CommandLineRunner{
 		Course course = repository.findById(10001L);
 		logger.info("Course 10001 is -> {}", course);
 		//repository.playWithEntityManager();
-		StudentUtils.saveStudentWithPassport();
-		Student retrieveStudentAndPassportDetails = StudentUtils.retrieveStudentAndPassportDetails();
-		logger.debug("Passport -> {}", retrieveStudentAndPassportDetails.getPassport());
+		opService.executeStudentMethods();
+		opService.executePassportMethods();
 	}
 
 	

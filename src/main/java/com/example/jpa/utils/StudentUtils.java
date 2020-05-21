@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.jpa.entity.Passport;
 import com.example.jpa.entity.Student;
@@ -39,9 +40,13 @@ public class StudentUtils {
 
 	}
 	
+	
+	@Transactional
 	public static Student retrieveStudentAndPassportDetails() {
 		Student student = staticStudentRepository.retrieve();
 		logger.info("Student retrieved -> {}", student);
+		logger.debug("Passport retreived -> {}", student.getPassport());
 		return student;
 	}
+	
 }
