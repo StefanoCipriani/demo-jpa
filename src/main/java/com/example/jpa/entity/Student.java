@@ -26,8 +26,8 @@ public class Student {
 	 * with cascade it will do all operation with child nodes without explicity call crud methods.
 	 * In practice if you have a passport associated to a student you don't need to save the passport first 
 	 * and then the student.
-	 * You can do all in one step, omitting the passport save
-	 * */
+	 * You can do all in one step, omitting the passport save 
+	 */
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// 
 	//@OneToOne
 	@JoinColumn(name="ID_PASSAPORTO")

@@ -1,10 +1,20 @@
 package com.example.jpa.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Course {
 
 	@Id
@@ -12,12 +22,20 @@ public class Course {
 	private Long id;
 	private String name;
 	
-	public Course() {
-		
-	}
+	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+	private Set<Review> reviews = new HashSet<>();
 	
 	public Course(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + "]";
+	}
+	
+	public void addReview(Review r) {
+		this.reviews.add(r);
 	}
 
 	public String getName() {
@@ -28,6 +46,10 @@ public class Course {
 		this.name = name;
 	}
 
+	public Set<Review> getReviews() {
+		return reviews;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -36,11 +58,6 @@ public class Course {
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return "Course [id=" + id + ", name=" + name + "]";
-	}
 	
 	
-
 }

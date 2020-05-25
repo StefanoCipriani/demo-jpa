@@ -35,6 +35,7 @@ public class DemoJpaApplication implements CommandLineRunner{
 		//repository.playWithEntityManager();
 		opService.executeStudentMethods();
 		opService.executePassportMethods();
+		opService.executeCourseMethods();
 	}
 
 	

@@ -9,5 +9,5 @@ insert into student(id,name,id_passaporto) values (20002, 'Antonio',40002);
 
 
 
-insert into review(id,stars,description) values (50001, '5', 'TOP');
-insert into review(id,stars,description) values (50002, '1', 'FLOP');
+insert into review(id,stars,description, course_id) values (50001, '5', 'TOP',10001);
+insert into review(id,stars,description, course_id) values (50002, '1', 'FLOP',10002);
