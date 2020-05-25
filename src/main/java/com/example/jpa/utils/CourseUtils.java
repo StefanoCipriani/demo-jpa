@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.jpa.entity.Course;
 import com.example.jpa.entity.Review;
-import com.example.jpa.entity.Student;
 import com.example.jpa.repository.CourseRepository;
 
 @Component
