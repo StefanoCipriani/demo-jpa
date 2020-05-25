@@ -20,11 +20,12 @@ public class ReviewRepository {
 	@Autowired
 	private EntityManager em;
 	
-	public Review findById(Long id) {
+	public Review findById(int id) {
+		logger.info("FindById");
 		return em.find(Review.class,id);
 	}
 	
-	public void deleteById(Long id) {
+	public void deleteById(int id) {
 		Review c = findById(id);
 		if(c != null)
 			em.remove(c);

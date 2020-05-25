@@ -1,12 +1,15 @@
 package com.example.jpa.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +27,9 @@ public class Course {
 	
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 	private Set<Review> reviews = new HashSet<>();
+	
+	@ManyToMany(mappedBy = "courses")
+	private List<Student> students = new ArrayList<>();
 	
 	public Course(String name) {
 		this.name = name;
@@ -56,6 +62,14 @@ public class Course {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 
 	

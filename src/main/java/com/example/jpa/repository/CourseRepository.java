@@ -1,6 +1,9 @@
 package com.example.jpa.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,4 +49,10 @@ public class CourseRepository {
 		course.setName("Web services in 100 steps - Updated");
 		logger.debug("playWithEntityManager - end");
 	}
+	
+	public List<Course> courseWithoutStudent (){
+		TypedQuery<Course> createQuery = em.createQuery("SELECT c from Course c where c.students is empty", Course.class);
+		return createQuery.getResultList();
+	}
+	
 }

@@ -1,5 +1,7 @@
 package com.example.jpa.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.slf4j.Logger;
@@ -33,6 +35,15 @@ public class StudentRepository {
 	public Student retrieve() {
 		Student student = em.find(Student.class, 1);
 		return student;
+	}
+	
+	public Student getOne() {
+		List<Student> resultList = em.createQuery("SELECT s from Student s", Student.class).getResultList();
+		return resultList != null && resultList.size() > 0 ? resultList.get(0): null ;
+	}
+	
+	public Student findById(int id) {
+		return em.find(Student.class, id);
 	}
 	
 }

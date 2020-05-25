@@ -1,10 +1,16 @@
 package com.example.jpa.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -16,7 +22,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "passport")
+@ToString(exclude = {"passport", "courses"})
 public class Student {
 
 	@Id
@@ -28,8 +34,15 @@ public class Student {
 	 * and then the student.
 	 * You can do all in one step, omitting the passport save 
 	 */
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// 
-	//@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="ID_PASSAPORTO")
 	private Passport passport;
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="STUDENT_COURSE",
+		joinColumns = @JoinColumn(name = "STUDENT_ID"),
+		inverseJoinColumns = @JoinColumn(name = "COURSE_ID")
+	)
+	private List<Course> courses = new ArrayList<>();
+	
+	
 }

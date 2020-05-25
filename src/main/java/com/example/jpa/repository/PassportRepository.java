@@ -22,6 +22,7 @@ public class PassportRepository {
 	
 	
 	public Passport retrieve() {
+		logger.info("Retreive");
 		Passport passport = em.find(Passport.class, 1);
 		return passport;
 	}

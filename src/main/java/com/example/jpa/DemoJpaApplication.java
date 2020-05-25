@@ -33,9 +33,7 @@ public class DemoJpaApplication implements CommandLineRunner{
 		Course course = repository.findById(10001L);
 		logger.info("Course 10001 is -> {}", course);
 		//repository.playWithEntityManager();
-		opService.executeStudentMethods();
-		opService.executePassportMethods();
-		opService.executeCourseMethods();
+		opService.executeAll();
 	}
 
 	
